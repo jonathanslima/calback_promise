@@ -1,0 +1,38 @@
+[
+  {
+      "gender": "male",
+      "name": {
+          "title": "mr",
+          "first": "rolf",
+          "last": "hegdal"
+      },
+      "email": "rolf.hegdal@example.com"
+  },
+  {
+      "gender": "male",
+      "name": {
+          "title": "mr",
+          "first": "darth",
+          "last": "hebras"
+      },
+      "email": "darth.hebras@example.com"
+  },
+  {
+      "gender": "male",
+      "name": {
+          "title": "mr",
+          "first": "tifal",
+          "last": "hood"
+      },
+      "email": "tifal.hood@example.com"
+  },
+  {
+      "gender": "male",
+      "name": {
+          "title": "mr",
+          "first": "kyle",
+          "last": "laurence"
+      },
+      "email": "kyle.laurence@example.com"
+  }
+]

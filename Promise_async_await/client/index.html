@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Promise</title>
+</head>
+<body>
+  <script>
+    const users = fetch('./js/users.json').then(res => res.json());
+    const infos = fetch('./js/info.json').then(res => res.json());
+    const locations = fetch('./js/locations.json').then(res => res.json());
+    let mountUser = [];
+
+    // users.then(data => console.log(data));
+    // infos.then(data => console.log(data));
+    // locations.then(data => console.log(data));
+
+    async function getCompleteUsersInfo(){
+      await getUsers();
+      await getInfos();
+      await getLocations();
+    } 
+
+    function getUsers(){
+      users
+      .then(data => {
+        data.map(user => mountUser.push(user))
+        return mountUser;
+      });
+    }
+
+    function getInfos(){
+      infos.then(data => {
+        data.map((info, i) => {
+          if(info.email = mountUser[i].email){
+            mountUser[i].zipcode = info.zipcode
+            mountUser[i].picture = info.picture
+          }
+        })
+      });
+    }
+
+    function getLocations(){
+      locations.then(data => {
+        data.map((loc, i) => {
+          if(loc.zipcode = mountUser[i].zipcode){
+            mountUser[i].location = loc.location
+          }
+        })
+        console.log(mountUser)
+      });
+    }
+
+    getCompleteUsersInfo();
+  </script>
+</body>
+</html>
