@@ -1,0 +1,34 @@
+[
+    {
+        "zipcode": "24011",
+        "location": {
+            "street": "1403  Goldcliff Circle",
+            "city": "Washington",
+            "state": "DC"
+        }
+    },
+    {
+        "zipcode": "38930",
+        "location": {
+            "street": "3011  Margaret Street",
+            "city": "CROWELL",
+            "state": "TX"
+        }
+    },
+    {
+        "zipcode": "07645",
+        "location": {
+            "street": "1752  Wetzel Lane",
+            "city": "MONTVALE",
+            "state": "NJ"
+        }
+    },
+    {
+        "zipcode": "12210",
+        "location": {
+            "street": "1056  West Virginia Avenue",
+            "city": "Albany",
+            "state": "NY"
+        }
+    }
+]

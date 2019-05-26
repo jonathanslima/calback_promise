@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Callback</title>
+</head>
+<body>
+  <script>
+    let mountUser = [];    
+    let users = new XMLHttpRequest(),
+        infos = new XMLHttpRequest(),
+        locations = new XMLHttpRequest();
+
+    function getUsers(callbackInfo, callbackLocation){
+      users.open('GET', 'http://localhost:3000/js/users.json', true);
+      users.onreadystatechange = function() {
+        if (users.readyState == 4) {
+          if (users.status = 200){
+            let data = JSON.parse(users.responseText);
+            mountUser = data;
+          }
+        }
+      }
+      users.send();
+
+      return callbackInfo(callbackLocation)
+    }
+
+    function getInfos(callbackLocation){
+      infos.open('GET', 'http://localhost:3000/js/info.json', true);
+      infos.onreadystatechange = function() {
+        if (infos.readyState == 4) {
+          if (infos.status = 200){
+
+            let information = JSON.parse(infos.responseText);
+
+            information.map((data, i)=> {
+              if(data.email = mountUser[i].email){
+                mountUser[i].zipcode = data.zipcode
+                mountUser[i].picture = data.picture
+              }
+            });
+          }
+        }
+      }
+      infos.send();
+
+      return callbackLocation()
+    }
+
+    function getLocations(){
+      locations.open('GET', 'http://localhost:3000/js/locations.json', true);
+      locations.onreadystatechange = function() {
+        if (locations.readyState == 4) {
+          if (locations.status = 200){
+            let localization = JSON.parse(locations.responseText);
+
+            localization.map((loc, i) => {
+              if(loc.zipcode = mountUser[i].zipcode){
+                mountUser[i].location = loc.location
+              }
+            })
+            
+            console.log(mountUser)
+          }
+        }
+      }
+      locations.send();
+    }
+
+    getUsers(getInfos, getLocations);
+  </script>
+</body>
+</html>
