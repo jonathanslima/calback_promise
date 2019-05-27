@@ -13,17 +13,11 @@
     const locations = fetch('./js/locations.json').then(res => res.json());
     let mountUser = [];
 
-    // users.then(data => console.log(data));
-    // infos.then(data => console.log(data));
-    // locations.then(data => console.log(data));
-
     async function getCompleteUsersInfo(){
-      await getUsers();
-      await getInfos();
-      await getLocations();
+      Promise.all([getUsers(), getInfos(), getLocations()])
     } 
 
-    function getUsers(){
+    async function getUsers(){
       users
       .then(data => {
         data.map(user => mountUser.push(user))
@@ -31,7 +25,7 @@
       });
     }
 
-    function getInfos(){
+    async function getInfos(){
       infos.then(data => {
         data.map((info, i) => {
           if(info.email = mountUser[i].email){
@@ -42,7 +36,7 @@
       });
     }
 
-    function getLocations(){
+    async function getLocations(){
       locations.then(data => {
         data.map((loc, i) => {
           if(loc.zipcode = mountUser[i].zipcode){
